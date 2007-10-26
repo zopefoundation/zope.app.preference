@@ -15,24 +15,45 @@
 
 $Id$
 """
-
 import os
-
 from setuptools import setup, find_packages
 
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
 setup(name = 'zope.app.preference',
-      version = '3.4.0b1',
-      url = 'http://svn.zope.org/zope.app.preference',
-      license = 'ZPL 2.1',
-      description = 'Zope app.preference',
-      author = 'Zope Corporation and Contributors',
-      author_email = 'zope3-dev@zope.org',
-      long_description = "",
-
-      packages = find_packages('src'),
+      version = '3.4.0',
+      author='Zope Corporation and Contributors',
+      author_email='zope3-dev@zope.org',
+      description='User Preferences Framework',
+      long_description=(
+          read('README.txt')
+          + '\n\n' +
+          'Detailed Dcoumentation\n' +
+          '======================\n'
+          + '\n\n' +
+          read('src', 'zope', 'app', 'preference', 'README.txt')
+          + '\n\n' +
+          read('CHANGES.txt')
+          ),
+      keywords = "zope3 user preference",
+      classifiers = [
+          'Development Status :: 5 - Production/Stable',
+          'Environment :: Web Environment',
+          'Intended Audience :: Developers',
+          'License :: OSI Approved :: Zope Public License',
+          'Programming Language :: Python',
+          'Natural Language :: English',
+          'Operating System :: OS Independent',
+          'Topic :: Internet :: WWW/HTTP',
+          'Framework :: Zope3'],
+      url='http://cheeseshop.python.org/pypi/zope.app.preference',
+      license='ZPL 2.1',
+      packages=find_packages('src'),
       package_dir = {'': 'src'},
-
-      namespace_packages = ['zope', 'zope.app'],
+      namespace_packages=['zope', 'zope.app'],
+      extras_require=dict(test=['zope.app.testing',
+                                'zope.testing']),
       install_requires = ['setuptools',
                           'ZODB3',
                           'zope.annotation',
@@ -42,7 +63,6 @@ setup(name = 'zope.app.preference',
                           'zope.app.form',
                           'zope.app.pagetemplate',
                           'zope.app.renderer',
-                          'zope.app.testing',
                           'zope.app.tree',
                           'zope.app.zapi',
                           'zope.component',
@@ -53,10 +73,8 @@ setup(name = 'zope.app.preference',
                           'zope.location',
                           'zope.schema',
                           'zope.security',
-                          'zope.testing',
                           'zope.traversing',
                           ],
       include_package_data = True,
-
       zip_safe = False,
       )
