@@ -13,7 +13,7 @@
 ##############################################################################
 """User Preferences Browser Views
 
-$Id: menu.py 29269 2005-02-23 22:22:48Z srichter $
+$Id$
 """
 __docformat__ = 'restructuredtext'
 
@@ -31,7 +31,7 @@ from zope.app.form.browser.editview import EditView
 from zope.app.pagetemplate.simpleviewclass import simple
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.app.tree.browser.cookie import CookieTreeView
-from zope.app.i18n import ZopeMessageFactory as _
+from zope.i18nmessageid import ZopeMessageFactory as _
 
 from zope.app.preference import interfaces
 
@@ -77,7 +77,7 @@ class EditPreferenceGroup(EditView):
         self.schema = removeSecurityProxy(context.__schema__)
 
         if self.schema is None:
-            self.schema = NoneInterface 
+            self.schema = NoneInterface
             zope.interface.alsoProvides(removeSecurityProxy(context),
                                         NoneInterface)
 
