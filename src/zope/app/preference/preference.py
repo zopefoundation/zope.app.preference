@@ -28,13 +28,12 @@ from zope.location import LocationProxy, locate, Location
 from zope.annotation.interfaces import IAnnotations
 
 import zope.app.component.hooks
-from zope.app import zapi
 from zope.app.container.contained import Contained
 from zope.app.container.interfaces import IReadContainer
 
-from zope.app.preference.interfaces import IPreferenceGroup 
-from zope.app.preference.interfaces import IPreferenceCategory 
-from zope.app.preference.interfaces import IDefaultPreferenceProvider 
+from zope.app.preference.interfaces import IPreferenceGroup
+from zope.app.preference.interfaces import IPreferenceCategory
+from zope.app.preference.interfaces import IDefaultPreferenceProvider
 
 pref_key = 'zope.app.user.UserPreferences'
 
@@ -42,7 +41,7 @@ pref_key = 'zope.app.user.UserPreferences'
 class PreferenceGroup(Location):
     """A feature-rich ``IPreferenceGroup`` implementation.
 
-    This class implements the 
+    This class implements the
     """
     zope.interface.implements(IPreferenceGroup, IReadContainer)
 
@@ -72,7 +71,7 @@ class PreferenceGroup(Location):
 
     # Store the actual parent in ``__parent``. Usually we would just override
     # the property to an actual value during binding, but because we overrode
-    # ``__setattr__`` this is not possible anymore. 
+    # ``__setattr__`` this is not possible anymore.
     __parent = None
     def __parent__(self):
         return self.__parent or zope.app.component.hooks.getSite()
@@ -88,16 +87,17 @@ class PreferenceGroup(Location):
 
     def get(self, key, default=None):
         id = self.__id__ and self.__id__ + '.' + key or key
-        group = zapi.queryUtility(IPreferenceGroup, id, default)
+        group = zope.component.queryUtility(IPreferenceGroup, id, default)
         if group is default:
             return default
         return group.__bind__(self)
-    
+
 
     def items(self):
         cutoff = self.__id__ and len(self.__id__)+1 or 0
+        utilities = zope.component.getUtilitiesFor(IPreferenceGroup)
         return [(id[cutoff:], group.__bind__(self))
-                for id, group in zapi.getUtilitiesFor(IPreferenceGroup)
+                for id, group in utilities
                 if id != self.__id__ and \
                    id.startswith(self.__id__) and \
                    id[cutoff:].find('.') == -1]
@@ -128,7 +128,7 @@ class PreferenceGroup(Location):
 
     def __len__(self):
         """See zope.app.container.interfaces.IReadContainer"""
-        return len(self.items())    
+        return len(self.items())
 
     def __getattr__(self, key):
         # Try to find a sub-group of the given id
@@ -142,8 +142,10 @@ class PreferenceGroup(Location):
             value = self.data.get(key, marker)
             if value is marker:
                 # Try to find a default preference provider
-                provider = zapi.queryUtility(IDefaultPreferenceProvider,
-                                             context=self)
+                provider = zope.component.queryUtility(
+                    IDefaultPreferenceProvider,
+                    context=self
+                    )
                 if provider is None:
                     return self.__schema__[key].default
                 defaultGroup = provider.getDefaultPreferenceGroup(self.__id__)
@@ -227,8 +229,8 @@ def PreferenceGroupChecker(instance):
 def UserPreferences(context=None):
     """Adapts an ``ILocation`` object to the ``IUserPreferences`` interface."""
     if context is None:
-        context = zapi.getSiteManager()
-    rootGroup = zapi.getUtility(IPreferenceGroup)
+        context = zope.component.getSiteManager()
+    rootGroup = zope.component.getUtility(IPreferenceGroup)
     rootGroup = rootGroup.__bind__(context)
     rootGroup.__name__ = '++preferences++'
     zope.interface.alsoProvides(rootGroup, IContainmentRoot)
@@ -239,9 +241,9 @@ class preferencesNamespace(object):
 
     def __init__(self, ob, request=None):
         self.context = ob
-        
+
     def traverse(self, name, ignore):
-        rootGroup = zapi.getUtility(IPreferenceGroup)
+        rootGroup = zope.component.getUtility(IPreferenceGroup)
         rootGroup = rootGroup.__bind__(self.context)
         rootGroup.__name__ = '++preferences++'
         zope.interface.alsoProvides(rootGroup, IContainmentRoot)

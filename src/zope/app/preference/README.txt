@@ -338,8 +338,8 @@ Then the system sets up a root preference group:
 Now we can use the preference system in its intended way. We access the folder
 settings as follows:
 
-  >>> from zope.app import zapi
-  >>> prefs = zapi.getUtility(interfaces.IPreferenceGroup)
+  >>> import zope.component
+  >>> prefs = zope.component.getUtility(interfaces.IPreferenceGroup)
   >>> prefs.ZMISettings.Folder.sortedBy
   'size'
 
@@ -438,9 +438,10 @@ namespace:
 
 We can now access the preferences as follows:
 
-  >>> zapi.traverse(None, '++preferences++ZMISettings/skin')
+  >>> from zope.traversing.api import traverse
+  >>> traverse(None, '++preferences++ZMISettings/skin')
   'Basic'
-  >>> zapi.traverse(None, '++preferences++/ZMISettings/skin')
+  >>> traverse(None, '++preferences++/ZMISettings/skin')
   'Basic'
 
 

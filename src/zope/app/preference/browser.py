@@ -18,13 +18,14 @@ $Id$
 __docformat__ = 'restructuredtext'
 
 import re
+import zope.component
 import zope.interface
 import zope.schema
 from zope.security.proxy import removeSecurityProxy
 from zope.i18n import translate
 from zope.i18nmessageid import Message
+from zope.traversing.api import getParent, getRoot
 
-from zope.app import zapi
 from zope.app.basicskin.standardmacros import StandardMacros
 from zope.app.container.interfaces import IObjectFindFilter
 from zope.app.form.browser.editview import EditView
@@ -53,7 +54,7 @@ class PreferenceGroupFilter(object):
             return True
 
         if interfaces.IPreferenceGroup.providedBy(obj):
-            parent = zapi.getParent(obj)
+            parent = getParent(obj)
             if interfaces.IPreferenceCategory.providedBy(parent):
                 return True
 
@@ -64,7 +65,7 @@ class PreferencesTree(CookieTreeView):
     """Preferences Tree using the stateful cookie tree."""
 
     def tree(self):
-        root = zapi.getRoot(self.context)
+        root = getRoot(self.context)
         filter = PreferenceGroupFilter()
         return self.cookieTree(root, filter)
 
@@ -100,6 +101,6 @@ class EditPreferenceGroup(EditView):
             return u''
 
         # Render the description as ReST.
-        source = zapi.createObject('zope.source.rest', text)
-        renderer = zapi.getMultiAdapter((source, self.request))
+        source = zope.component.createObject('zope.source.rest', text)
+        renderer = zope.component.getMultiAdapter((source, self.request))
         return renderer.render()
