@@ -2,6 +2,20 @@
 CHANGES
 =======
 
+3.5.0 (unreleased)
+------------------
+
+- Get rid of zope.app.zapi dependency, replacing its
+  uses with direct imports from original places.
+
+- Change mailing address from zope3-dev to zope-dev, as
+  the first one is retired now.
+
+- Fix tests for python 2.6.
+
+- Remove zpkg stuff and zcml include files for
+  old mkzopeinstance-based instances.
+
 3.4.1 (2007-10-30)
 ------------------
 
