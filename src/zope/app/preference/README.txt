@@ -148,7 +148,6 @@ The preferences would not be very powerful, if you could create a full
 preferences. So let's create a sub-group for our ZMI user settings, where we
 can adjust the look and feel of the folder contents view:
 
-  >>> import sets
   >>> class IFolderSettings(zope.interface.Interface):
   ...     """Basic User Preferences"""
   ...
@@ -156,7 +155,7 @@ can adjust the look and feel of the folder contents view:
   ...         title=u"Shown Fields",
   ...         description=u"Fields shown in the table.",
   ...         value_type=zope.schema.Choice(['name', 'size', 'creator']),
-  ...         default=sets.Set(['name', 'size']))
+  ...         default=set(['name', 'size']))
   ...
   ...     sortedBy = zope.schema.Choice(
   ...         title=u"Sorted By",
