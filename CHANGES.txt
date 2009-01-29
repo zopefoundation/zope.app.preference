@@ -2,19 +2,19 @@
 CHANGES
 =======
 
-3.5.1 (unreleased)
+3.6.0 (unreleased)
 ------------------
 
-- ...
+- Use ``zope.container`` instead of ``zope.app.container``.
 
 3.5.0 (2009-01-17)
 ------------------
 
-- Get rid of zope.app.zapi dependency, replacing its
-  uses with direct imports from original places.
+- Get rid of ``zope.app.zapi`` dependency, replacing its uses with direct
+  imports from original places.
 
-- Change mailing address from zope3-dev to zope-dev, as
-  the first one is retired now.
+- Change mailing address from zope3-dev to zope-dev, as the first one
+  is retired now.
 
 - Fix tests for python 2.6.
 

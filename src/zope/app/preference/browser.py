@@ -21,13 +21,13 @@ import re
 import zope.component
 import zope.interface
 import zope.schema
-from zope.security.proxy import removeSecurityProxy
+from zope.container.interfaces import IObjectFindFilter
 from zope.i18n import translate
 from zope.i18nmessageid import Message
+from zope.security.proxy import removeSecurityProxy
 from zope.traversing.api import getParent, getRoot
 
 from zope.app.basicskin.standardmacros import StandardMacros
-from zope.app.container.interfaces import IObjectFindFilter
 from zope.app.form.browser.editview import EditView
 from zope.app.pagetemplate.simpleviewclass import simple
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile

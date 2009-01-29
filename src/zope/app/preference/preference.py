@@ -28,8 +28,8 @@ from zope.location import LocationProxy, locate, Location
 from zope.annotation.interfaces import IAnnotations
 
 import zope.app.component.hooks
-from zope.app.container.contained import Contained
-from zope.app.container.interfaces import IReadContainer
+from zope.container.contained import Contained
+from zope.container.interfaces import IReadContainer
 
 from zope.app.preference.interfaces import IPreferenceGroup
 from zope.app.preference.interfaces import IPreferenceCategory
@@ -103,7 +103,7 @@ class PreferenceGroup(Location):
                    id[cutoff:].find('.') == -1]
 
     def __getitem__(self, key):
-        """See zope.app.container.interfaces.IReadContainer"""
+        """See zope.container.interfaces.IReadContainer"""
         default = object()
         obj = self.get(key, default)
         if obj is default:
@@ -111,23 +111,23 @@ class PreferenceGroup(Location):
         return obj
 
     def __contains__(self, key):
-        """See zope.app.container.interfaces.IReadContainer"""
+        """See zope.container.interfaces.IReadContainer"""
         return self.get(key) is not None
 
     def keys(self):
-        """See zope.app.container.interfaces.IReadContainer"""
+        """See zope.container.interfaces.IReadContainer"""
         return [id for id, group in self.items()]
 
     def __iter__(self):
-        """See zope.app.container.interfaces.IReadContainer"""
+        """See zope.container.interfaces.IReadContainer"""
         return self.values().__iter__()
-        
+
     def values(self):
-        """See zope.app.container.interfaces.IReadContainer"""
+        """See zope.container.interfaces.IReadContainer"""
         return [group for id, group in self.items()]
 
     def __len__(self):
-        """See zope.app.container.interfaces.IReadContainer"""
+        """See zope.container.interfaces.IReadContainer"""
         return len(self.items())
 
     def __getattr__(self, key):
