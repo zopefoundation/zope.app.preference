@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.6.0 (unreleased)
+3.6.0 (2009-02-01)
 ------------------
 
 - Use ``zope.container`` instead of ``zope.app.container``.
