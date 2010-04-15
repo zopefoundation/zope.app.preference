@@ -13,12 +13,12 @@
 ##############################################################################
 """Tests for the Preferences System
 
-$Id: tests.py 29143 2005-02-14 22:43:16Z srichter $
+$Id$
 """
-import unittest
-from zope.testing import doctest, doctestunit
-from zope.component import testing
 from zope.app.testing import setup
+from zope.component import testing
+import doctest
+import unittest
 
 def setUp(test):
     testing.setUp(test)
@@ -32,9 +32,5 @@ def test_suite():
     return unittest.TestSuite((
         doctest.DocFileSuite('README.txt',
                              setUp=setUp, tearDown=tearDown,
-                             globs={'pprint': doctestunit.pprint},
                              optionflags=doctest.NORMALIZE_WHITESPACE),
         ))
-
-if __name__ == '__main__':
-    unittest.main(default='test_suite')
