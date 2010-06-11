@@ -49,7 +49,7 @@
   <td class="list-item"
       tal:attributes="colspan python:maxDepth-len(nodeInfo['row-state'])+1">
     &nbsp;<a href=""
-       tal:attributes="href 
+       tal:attributes="href
            string:${node/context/@@absolute_url}/@@index.html"
        tal:content="node/context/zope:name">
       node/id
@@ -60,7 +60,7 @@
 </tr>
 
 </table>
-  
+
 </metal:block>
 
 
@@ -100,7 +100,7 @@
 
   <div tal:content="structure view/getIntroduction">
     Category Description goes here.
-  </div>  
+  </div>
   <br/>
 
   <p tal:define="status view/update"
@@ -111,7 +111,7 @@
     There are <strong tal:content="python:len(view.errors)"
                       i18n:name="num_errors">6</strong> input errors.
   </p>
-      
+
   <table class="listing" width="90%" cellspacing="0" cellpadding="0"
          tal:condition="view/widgets">
 
@@ -128,16 +128,18 @@
                     firstrow repeat/widget/start"
         tal:attributes="class python:oddrow and 'even' or 'odd'">
       <td class="description">
-        <b tal:content="widget/label">Option</b>
-        <div class="indent small">
-          <div tal:content="widget/hint">
-            Explanation
+        <label tal:attributes="for widget/name">
+          <b tal:content="widget/label">Option</b>
+          <div class="indent small">
+            <div tal:content="widget/hint">
+              Explanation
+            </div>
+            <div class="error" tal:define="error widget/error"
+                 tal:condition="error" tal:content="structure error">
+              The Error
+            </div>
           </div>
-          <div class="error" tal:define="error widget/error"
-            tal:condition="error" tal:content="structure error">
-            The Error
-          </div>
-        </div>
+        </label>
       </td>
       <td class="input" tal:content="structure widget">
         <input type="text" style="width:100%"/>

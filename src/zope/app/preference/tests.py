@@ -15,22 +15,35 @@
 
 $Id$
 """
-from zope.app.testing import setup
+from zope.app.testing import setup, functional
 from zope.component import testing
 import doctest
 import unittest
+import zope.app.preference.testing
+
 
 def setUp(test):
     testing.setUp(test)
     setup.setUpTestAsModule(test, 'zope.app.preference.README')
 
+
+def ftest_setUp(test):
+    setup.setUpTestAsModule(test, 'zope.app.preference.zmi')
+
+
 def tearDown(test):
     testing.tearDown(test)
     setup.tearDownTestAsModule(test)
 
+
 def test_suite():
+    browser_tests = functional.FunctionalDocFileSuite(
+        'zmi.txt', setUp=ftest_setUp, tearDown=tearDown)
+    browser_tests.layer = zope.app.preference.testing.PreferencesLayer
+
     return unittest.TestSuite((
         doctest.DocFileSuite('README.txt',
                              setUp=setUp, tearDown=tearDown,
                              optionflags=doctest.NORMALIZE_WHITESPACE),
+        browser_tests,
         ))
