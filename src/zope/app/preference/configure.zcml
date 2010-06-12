@@ -6,38 +6,12 @@
     i18n_domain="zope"
     >
 
-  <view
-      name="preferences"
-      for="*"
-      type="*"
-      provides="zope.traversing.interfaces.ITraversable"
-      factory=".preference.preferencesNamespace"
-      />
-
-  <adapter
-      name="preferences"
-      for="*"
-      provides="zope.traversing.interfaces.ITraversable"
-      factory=".preference.preferencesNamespace"
-      />
-
-  <adapter
-      for="zope.location.interfaces.ILocation"
-      provides=".interfaces.IUserPreferences"
-      factory=".preference.UserPreferences"
-      />
-
-  <!-- Root preference group -->
-  <preferenceGroup
-      id=""
-      title="User Preferences"
-      />
-
+  <include package="zope.preference" />
 
   <!-- Preference Groups -->
   <browser:page
       name="index.html"
-      for=".interfaces.IPreferenceGroup"
+      for="zope.preference.interfaces.IPreferenceGroup"
       class=".browser.EditPreferenceGroup"
       template="index.pt"
       permission="zope.Public"
@@ -45,34 +19,14 @@
 
   <browser:page
       name="editAsSubGroup"
-      for=".interfaces.IPreferenceGroup"
+      for="zope.preference.interfaces.IPreferenceGroup"
       class=".browser.EditPreferenceGroup"
       template="subgroup.pt"
       permission="zope.Public"
       />
 
-
-  <!-- Default Preference Provider -->
-  <class class=".default.DefaultPreferenceProvider">
-    <implements
-        interface="zope.annotation.interfaces.IAttributeAnnotatable"
-        />
-    <require
-        permission="zope.ManageSite"
-        interface=".interfaces.IDefaultPreferenceProvider"
-        />
-  </class>
-
-  <view
-      name="preferences"
-      for=".interfaces.IDefaultPreferenceProvider"
-      type="*"
-      provides="zope.interface.Interface"
-      factory=".default.DefaultPreferences"
-      />
-
   <browser:addMenuItem
-      class=".default.DefaultPreferenceProvider"
+      class="zope.preference.default.DefaultPreferenceProvider"
       title="Default User Preferences Provider"
       description="A Default User Preferences Provider"
       permission="zope.ManageSite"
@@ -99,7 +53,7 @@
 
   <browser:page
       name="tree"
-      for=".interfaces.IPreferenceGroup"
+      for="zope.preference.interfaces.IPreferenceGroup"
       class=".browser.PreferencesTree"
       permission="zope.View"
       attribute="tree"

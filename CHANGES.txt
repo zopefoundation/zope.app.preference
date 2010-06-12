@@ -2,10 +2,10 @@
 CHANGES
 =======
 
-3.7.1 (unreleased)
+3.8.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use split out `zope.preference`.
 
 
 3.7.0 (2010-06-11)

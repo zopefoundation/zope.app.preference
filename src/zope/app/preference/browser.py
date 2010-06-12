@@ -20,7 +20,6 @@ __docformat__ = 'restructuredtext'
 import re
 import zope.component
 import zope.interface
-import zope.schema
 from zope.container.interfaces import IObjectFindFilter
 from zope.i18n import translate
 from zope.i18nmessageid import Message
@@ -29,12 +28,10 @@ from zope.traversing.api import getParent, getRoot
 
 from zope.app.basicskin.standardmacros import StandardMacros
 from zope.app.form.browser.editview import EditView
-from zope.app.pagetemplate.simpleviewclass import simple
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.app.tree.browser.cookie import CookieTreeView
 from zope.i18nmessageid import ZopeMessageFactory as _
 
-from zope.app.preference import interfaces
+from zope.preference import interfaces
 
 
 NoneInterface = zope.interface.interface.InterfaceClass('None')

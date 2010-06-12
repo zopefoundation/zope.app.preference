@@ -11,20 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""This module handles the 'apidoc' namespace directives.
+"""This module handles the 'preference' namespace directives."""
 
-$Id$
-"""
-__docformat__ = 'restructuredtext'
-from zope.component.zcml import utility
-
-from zope.app.preference.interfaces import IPreferenceGroup
-from zope.app.preference.preference import PreferenceGroup
-
-
-def preferenceGroup(_context, id=None, schema=None,
-                    title=u'', description=u'', category=False):
-    if id is None:
-        id = ''
-    group = PreferenceGroup(id, schema, title, description, category)
-    utility(_context, IPreferenceGroup, group, name=id)
+# BBB
+from zope.preference.metaconfigure import preferenceGroup

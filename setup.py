@@ -27,16 +27,14 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name = 'zope.app.preference',
-      version='3.7.1dev',
+      version='3.8.0dev',
       author='Zope Corporation and Contributors',
       author_email='zope-dev@zope.org',
-      description='User Preferences Framework',
+      description='User Preferences Framework ZMI UI',
       long_description=(
           read('README.txt')
           + '\n\n' +
-          'Detailed Dcoumentation\n' +
-          '======================\n'
-          + '\n\n' +
+          '.. contents::\n\n' +
           read('src', 'zope', 'app', 'preference', 'README.txt')
           + '\n\n' +
           read('CHANGES.txt')
@@ -60,29 +58,10 @@ setup(name = 'zope.app.preference',
       extras_require=dict(test=[
           'zope.app.testing',
           'zope.app.zcmlfiles',
-          'zope.securitypolicy',
-          'zope.testbrowser',
-          'zope.testing',
           ]),
       install_requires = ['setuptools',
-                          'ZODB3',
-                          'zope.annotation',
-                          'zope.app.basicskin',
-                          'zope.app.component',
-                          'zope.app.form',
-                          'zope.app.pagetemplate',
-                          'zope.app.renderer',
+                          'zope.preference',
                           'zope.app.tree',
-                          'zope.component',
-                          'zope.configuration',
-                          'zope.container',
-                          'zope.i18n',
-                          'zope.i18nmessageid',
-                          'zope.interface',
-                          'zope.location',
-                          'zope.schema',
-                          'zope.security',
-                          'zope.traversing',
                           ],
       include_package_data = True,
       zip_safe = False,

@@ -1,3 +1,4 @@
 # Make a package
 
-from zope.app.preference.preference import UserPreferences
+# BBB
+from zope.preference.preference import UserPreferences

@@ -1,2 +1,2 @@
-This package provides and API and UI to create and maintain hierarchical user
-preferences. Preferences can be easily created by defining schemas.
+This package provides a UI to maintain hierarchical user preferences
+in the ZMI.
