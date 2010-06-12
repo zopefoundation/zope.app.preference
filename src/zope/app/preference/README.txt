@@ -2,7 +2,7 @@
 zope.app.preference
 ===================
 
-This package provides a user interface in th ZMI, so the user can edit
+This package provides a user interface in the ZMI, so the user can edit
 the preferences.
 
 Set up
