@@ -14,7 +14,7 @@
 """User Preferences Interfaces"""
 
 # BBB
-from zope.preferences.interfaces import (
+from zope.preference.interfaces import (
     IDefaultPreferenceProvider,
     IPreferenceCategory,
     IPreferenceGroup,

@@ -5,7 +5,8 @@ CHANGES
 3.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed BBB imports which pointed to a not existing `zope.preferences`
+  package.
 
 
 3.8.0 (2010-06-12)

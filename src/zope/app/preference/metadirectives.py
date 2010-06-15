@@ -14,4 +14,4 @@
 """``apidoc:preferencesgroup`` ZCML directive interface"""
 
 # BBB
-from zope.preferences.metadirectives import IPreferenceGroupDirective
+from zope.preference.metadirectives import IPreferenceGroupDirective

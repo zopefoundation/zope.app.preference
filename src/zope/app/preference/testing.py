@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""zope.app.preferences common test related classes/functions/objects.
+"""zope.app.preference common test related classes/functions/objects.
 
 $Id$
 """

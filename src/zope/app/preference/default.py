@@ -14,7 +14,7 @@
 """Default Preferences Provider"""
 
 # BBB
-from zope.preferences.default import (
+from zope.preference.default import (
     DefaultPreferenceGroup,
     DefaultPreferenceProvider,
     DefaultPreferences,
