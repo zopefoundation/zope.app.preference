@@ -40,8 +40,8 @@ them in python code:
 The preference schema is usually registered using a ZCML statement:
 
   >>> from zope.configuration import xmlconfig
-  >>> import zope.app.preference
-  >>> context = xmlconfig.file('meta.zcml', zope.app.preference)
+  >>> import zope.preference
+  >>> context = xmlconfig.file('meta.zcml', zope.preference)
 
   >>> context = xmlconfig.string('''
   ...     <configure
