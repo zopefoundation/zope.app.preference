@@ -15,23 +15,23 @@
 
 $Id$
 """
-from zope.app.testing import setup, functional
-from zope.component import testing
-import unittest
+import doctest
 import zope.app.preference.testing
+import zope.component.testing
+import zope.testing.module
 
 
 def setUp(test):
-    setup.setUpTestAsModule(test, 'zope.app.preference.README')
+    zope.testing.module.setUp(test, 'zope.app.preference.README')
 
 
 def tearDown(test):
-    testing.tearDown(test)
-    setup.tearDownTestAsModule(test)
+    zope.component.testing.tearDown(test)
+    zope.testing.module.tearDown(test)
 
 
 def test_suite():
-    tests = functional.FunctionalDocFileSuite(
+    suite = doctest.DocFileSuite(
         'README.txt', setUp=setUp, tearDown=tearDown)
-    tests.layer = zope.app.preference.testing.PreferencesLayer
-    return unittest.TestSuite((tests,))
+    suite.layer = zope.app.preference.testing.PreferencesLayer
+    return suite

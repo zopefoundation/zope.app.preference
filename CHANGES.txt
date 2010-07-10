@@ -5,7 +5,8 @@ CHANGES
 3.8.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Broke test dependency on ``zope.app.testing`` by using
+  ``zope.app.wsgi.testlayer``.
 
 
 3.8.1 (2010-06-15)

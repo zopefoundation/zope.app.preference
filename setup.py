@@ -56,7 +56,7 @@ setup(name = 'zope.app.preference',
       package_dir = {'': 'src'},
       namespace_packages=['zope', 'zope.app'],
       extras_require=dict(test=[
-          'zope.app.testing',
+          'zope.app.wsgi >= 3.7',
           'zope.app.zcmlfiles',
           ]),
       install_requires = ['setuptools',

@@ -10,7 +10,7 @@ Set up
 
 To show the user interface functions we need some setup beforehand:
 
-  >>> from zope.testbrowser.testing import Browser
+  >>> from zope.app.wsgi.testlayer import Browser
   >>> browser = Browser()
 
 As the preferences cannot be defined through the web we have to define
