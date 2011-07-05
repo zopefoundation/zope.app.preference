@@ -8,6 +8,8 @@ CHANGES
 - Broke test dependency on ``zope.app.testing`` by using
   ``zope.app.wsgi.testlayer``.
 
+- Declared install dependency on ``zope.app.form``.
+
 
 3.8.1 (2010-06-15)
 ------------------
