@@ -13,10 +13,14 @@
 ##############################################################################
 """zope.app.preference common test related classes/functions/objects.
 
-$Id$
 """
 
 import zope.app.preference
-import zope.app.wsgi.testlayer
+from zope.app.wsgi.testlayer import BrowserLayer
+from zope.testbrowser.wsgi import TestBrowserLayer
 
-PreferencesLayer = zope.app.wsgi.testlayer.BrowserLayer(zope.app.preference)
+class _PreferencesLayer(TestBrowserLayer,
+                        BrowserLayer):
+    pass
+
+PreferencesLayer = _PreferencesLayer(zope.app.preference)

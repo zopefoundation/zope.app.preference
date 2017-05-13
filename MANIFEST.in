@@ -1,0 +1,13 @@
+include *.py
+include *.txt
+include *.rst
+include buildout.cfg
+include .travis.yml
+include .coveragerc
+include tox.ini
+
+recursive-include src *.gif
+recursive-include src *.png
+recursive-include src *.pt
+recursive-include src *.rst
+recursive-include src *.zcml
