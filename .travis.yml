@@ -17,8 +17,6 @@ notifications:
 install:
   - pip install -U pip setuptools
   - pip install -U coveralls coverage
-# XXX Remove when released
-  - pip install git+https://github.com/zopefoundation/zope.app.tree.git@python3#egg=zope.app.tree
   - pip install -U -e ".[test]"
 
 

@@ -81,7 +81,7 @@ setup(name='zope.app.preference',
       install_requires=[
           'setuptools',
           'zope.app.form >= 5.0.0',
-          'zope.app.tree >= 4.0.0.dev0',
+          'zope.app.tree >= 4.0.0',
           'zope.preference',
       ],
       include_package_data=True,
