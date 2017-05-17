@@ -27,7 +27,7 @@ def read(*rnames):
         return f.read()
 
 setup(name='zope.app.preference',
-      version='4.0.0',
+      version='4.0.1.dev0',
       author='Zope Corporation and Contributors',
       author_email='zope-dev@zope.org',
       description='User Preferences Framework ZMI UI',
