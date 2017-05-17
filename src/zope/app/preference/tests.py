@@ -15,21 +15,20 @@
 
 """
 import doctest
+import unittest
+
+import docutils.core
+import importlib
 import zope.app.preference.testing
 import zope.component.testing
 import zope.testing.module
-import importlib
-import unittest
-
 # Previously from zope.app.renderer
 from zope.component.interfaces import IFactory
-
-from zope.publisher.browser import BrowserView
-import docutils.core
-
-from zope.interface import directlyProvides
 from zope.interface import Interface
+from zope.interface import directlyProvides
 from zope.interface import implementer
+from zope.publisher.browser import BrowserView
+
 
 class ISource(Interface):
     """Simple base interface for all possible Wiki Page Source types."""
