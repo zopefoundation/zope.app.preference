@@ -1,15 +1,93 @@
-<configure xmlns="http://namespaces.zope.org/zope">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="zope">
 
   <!-- This file is the equivalent of site.zcml and it is -->
   <!-- used for functional testing setup -->
 
-  <include package="zope.app.zcmlfiles" />
+  <include package="zope.component" file="meta.zcml" />
+  <!-- view directive -->
+  <include package="zope.browserpage" file="meta.zcml" />
+  <!-- resource directive -->
+  <include package="zope.browserresource" file="meta.zcml" />
+  <!-- publisher directivie -->
+  <include package="zope.app.publication" file="meta.zcml" />
+  <!-- principal directives and securityPolicy directive -->
+  <include package="zope.security" file="meta.zcml" />
 
+  <!-- defaultView directive -->
+  <include package="zope.publisher" file="meta.zcml" />
+
+  <!-- menu/addMenuItem directive -->
+  <include package="zope.browsermenu" file="meta.zcml" />
+
+  <!-- addform/editform directive, required by zope.app.localpermision
+       via zop.app.security -->
+  <include package="zope.app.form.browser" file="meta.zcml" />
+
+  <include package="zope.annotation" />
+  <include package="zope.principalannotation" />
   <include package="zope.preference" file="meta.zcml"/>
   <include package="zope.preference" />
+  <include package="zope.container" />
+  <include package="zope.location" />
+  <include package="zope.traversing" />
+  <include package="zope.traversing.browser" />
+  <!-- Root IAuthentication -->
+  <include package="zope.principalregistry" />
+
+  <!-- view_get_menu view -->
+  <include package="zope.browsermenu" />
+
+  <!-- These normally come from zope.app.zcmlfiles/menus.zcml -->
+  <browser:menu
+      id="zmi_views"
+      title="Views"
+      description="Menu for displaying alternate representations of an object"
+      />
+  <!-- Normally done in zope.app.principalannotation's bootstrap
+       subscriber -->
+  <utility
+      factory="zope.principalannotation.utility.PrincipalAnnotationUtility"
+      provides="zope.principalannotation.interfaces.IPrincipalAnnotationUtility"
+      />
+
+  <include package="zope.publisher" />
+  <include package="zope.app.publication" />
+
+  <!-- IInputWidget adapters -->
+  <include package="zope.formlib" />
+
+
+  <!-- Register the Application folder -->
+  <include package="zope.app.appsetup" />
+
+  <!-- @@standard_macros -->
+  <include package="zope.app.basicskin" />
+  <include package="zope.app.rotterdam" />
+  <!-- zope namespace -->
+  <include package="zope.app.pagetemplate" />
+
+  <!-- login_logout view -->
+  <include package="zope.app.security.browser" />
 
   <include package="zope.app.preference" />
   <include package="zope.app.tree" />
-  <include package="zope.app.renderer" />
+
+  <browser:defaultView name="index.html" />
+  <browser:defaultSkin name="Rotterdam" />
+
+  <!-- Usually from zope.app.renderer -->
+  <utility
+      component=".tests.ReStructuredTextSourceFactory"
+      name="zope.source.rest"
+      />
+
+  <browser:view
+      name=""
+      for=".tests.IReStructuredTextSource"
+      class=".tests._ReStructuredTextToHTMLRenderer"
+      permission="zope.Public" />
 
 </configure>

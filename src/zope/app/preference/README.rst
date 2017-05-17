@@ -1,17 +1,18 @@
-===================
-zope.app.preference
-===================
+=====================
+ zope.app.preference
+=====================
 
 This package provides a user interface in the ZMI, so the user can edit
 the preferences.
 
 Set up
-------
+======
 
 To show the user interface functions we need some setup beforehand:
 
-  >>> from zope.app.wsgi.testlayer import Browser
+  >>> from zope.testbrowser.wsgi import Browser
   >>> browser = Browser()
+  >>> browser.handleErrors = False
 
 As the preferences cannot be defined through the web we have to define
 them in python code:
@@ -36,6 +37,11 @@ them in python code:
   ...         description=u"Specifies whether Zope logo should be displayed "
   ...                     u"at the top of the screen.",
   ...         default=True)
+  >>> class INotCategorySettings(zope.interface.Interface):
+  ...    """An example that's not a categary"""
+  ...    comment = zope.schema.TextLine(
+  ...        title=u'A comment',
+  ...        description=u'A description')
 
 The preference schema is usually registered using a ZCML statement:
 
@@ -55,10 +61,17 @@ The preference schema is usually registered using a ZCML statement:
   ...           category="true"
   ...           />
   ...
+  ...       <preferenceGroup
+  ...           id="NotCategory"
+  ...           title="Not Category"
+  ...           schema="zope.app.preference.README.INotCategorySettings"
+  ...           category="false"
+  ...           />
+  ...
   ...     </configure>''', context)
 
 Editing Preferences
--------------------
+===================
 
 The preferences are accessable in the ``++preferences++`` namespace:
 
@@ -66,6 +79,7 @@ The preferences are accessable in the ``++preferences++`` namespace:
 
 The page shows a form which allows editing the preference values:
 
+  >>> browser.getControl("comment").value = "A comment"
   >>> browser.getControl('E-mail').value = 'hans@example.com'
   >>> browser.getControl('Skin').displayOptions
   ['Rotterdam', 'ZopeTop', 'Basic']
@@ -96,7 +110,7 @@ The preference group is shown in a tree. It has a link to the form:
 
 
 Preference Group Trees
-----------------------
+======================
 
 The preferences would not be very powerful, if you could create a full
 preferences. So let's create a sub-group for our ZMI user settings, where we
@@ -151,3 +165,4 @@ Selecing `Change` persists these values, too:
   ['size', 'creator']
   >>> browser.getControl('Sorted By').displayValue
   ['creator']
+  >>> browser.open("http://localhost/++preferences++/ZMISettings.Folder/@@index.html")

@@ -13,7 +13,6 @@
 ##############################################################################
 """User Preferences Browser Views
 
-$Id$
 """
 __docformat__ = 'restructuredtext'
 
@@ -41,21 +40,22 @@ class PreferencesMacros(StandardMacros):
     macro_pages = ('preference_macro_definitions',)
 
 
+@zope.interface.implementer(IObjectFindFilter)
 class PreferenceGroupFilter(object):
-    """A special filter for """
-    zope.interface.implements(IObjectFindFilter)
+    """A special filter for preferences"""
 
     def matches(self, obj):
         """Decide whether the object is shown in the tree."""
+        matches = False
         if interfaces.IPreferenceCategory.providedBy(obj):
-            return True
-
-        if interfaces.IPreferenceGroup.providedBy(obj):
+            # IPreferenceGroup objects dynamically implement
+            # IPreferenceCategory
+            matches = True
+        elif interfaces.IPreferenceGroup.providedBy(obj):
             parent = getParent(obj)
-            if interfaces.IPreferenceCategory.providedBy(parent):
-                return True
+            matches = interfaces.IPreferenceCategory.providedBy(parent)
 
-        return False
+        return matches
 
 
 class PreferencesTree(CookieTreeView):

@@ -1,31 +1,35 @@
-=======
-CHANGES
-=======
+=========
+ CHANGES
+=========
 
-3.8.2 (unreleased)
-------------------
+4.0.0 (unreleased)
+==================
+
+- Add support for Python 3.4, 3.5, 3.6 and PyPy.
+
+- Removed test dependency on ``zope.app.zcmlfiles`` and
+  ``zope.app.renderer``, among others. ``zope.app.renderer`` is still
+  required at runtime.
 
 - Broke test dependency on ``zope.app.testing`` by using
   ``zope.app.wsgi.testlayer``.
 
-- Declared install dependency on ``zope.app.form``.
-
 
 3.8.1 (2010-06-15)
-------------------
+==================
 
 - Fixed BBB imports which pointed to a not existing `zope.preferences`
   package.
 
 
 3.8.0 (2010-06-12)
-------------------
+==================
 
 - Depend on split out `zope.preference`.
 
 
 3.7.0 (2010-06-11)
-------------------
+==================
 
 - Added HTML labels to ZMI forms.
 
@@ -35,13 +39,13 @@ CHANGES
 
 
 3.6.0 (2009-02-01)
-------------------
+==================
 
 - Use ``zope.container`` instead of ``zope.app.container``.
 
 
 3.5.0 (2009-01-17)
-------------------
+==================
 
 - Got rid of ``zope.app.zapi`` dependency, replacing its uses with direct
   imports from original places.
@@ -56,12 +60,12 @@ CHANGES
 
 
 3.4.1 (2007-10-30)
-------------------
+==================
 
 - Avoid deprecation warnings for ``ZopeMessageFactory``.
 
 
 3.4.0 (2007-10-25)
-------------------
+==================
 
 - Initial release independent of the main Zope tree.
