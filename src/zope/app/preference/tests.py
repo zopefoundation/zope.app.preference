@@ -33,6 +33,7 @@ from zope.publisher.browser import BrowserView
 class ISource(Interface):
     """Simple base interface for all possible Wiki Page Source types."""
 
+
 class IReStructuredTextSource(ISource):
     """Marker interface for a restructured text source. Note that an
     implementation of this interface should always derive from unicode or
@@ -43,6 +44,7 @@ try:
     text_type = unicode
 except NameError:
     text_type = str
+
 
 class Source(text_type):
     __provides__ = None
@@ -62,9 +64,11 @@ class SourceFactory(object):
         directlyProvides(source, self._iface)
         return source
 
+
 ReStructuredTextSourceFactory = SourceFactory(
     IReStructuredTextSource, u"ReStructured Text (ReST)",
     u"ReStructured Text (ReST) Source")
+
 
 class _ReStructuredTextToHTMLRenderer(BrowserView):
     r"""An Adapter to convert from Restructured Text to HTML.
@@ -129,14 +133,15 @@ class _ReStructuredTextToHTMLRenderer(BrowserView):
             'input_encoding': 'unicode',
             'output_encoding': 'unicode',
             'initial_header_level': 3,
-            }
+        }
         overrides.update(settings_overrides)
         parts = docutils.core.publish_parts(
             self.context,
             writer_name='html',
             settings_overrides=overrides,
-            )
-        return u''.join((parts['body_pre_docinfo'], parts['docinfo'], parts['body']))
+        )
+        return u''.join(
+            (parts['body_pre_docinfo'], parts['docinfo'], parts['body']))
 
 
 def _make_import_test(mod_name, attrname):
@@ -146,6 +151,7 @@ def _make_import_test(mod_name, attrname):
                              str(mod) + ' has no ' + attrname)
 
     return test
+
 
 class TestBWCImports(unittest.TestCase):
 
@@ -157,6 +163,7 @@ class TestBWCImports(unittest.TestCase):
             ('preference', 'PreferenceGroup'),
     ):
         locals()['test_' + mod_name] = _make_import_test(mod_name, attrname)
+
 
 def setUp(test):
     zope.testing.module.setUp(test, 'zope.app.preference.README')
