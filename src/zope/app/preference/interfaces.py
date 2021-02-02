@@ -19,4 +19,4 @@ from zope.preference.interfaces import (
     IPreferenceCategory,
     IPreferenceGroup,
     IUserPreferences,
-    )
+)

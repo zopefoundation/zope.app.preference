@@ -18,4 +18,4 @@ from zope.preference.default import (
     DefaultPreferenceGroup,
     DefaultPreferenceProvider,
     DefaultPreferences,
-    )
+)

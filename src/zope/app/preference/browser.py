@@ -35,6 +35,7 @@ from zope.preference import interfaces
 
 NoneInterface = zope.interface.interface.InterfaceClass('None')
 
+
 class PreferencesMacros(StandardMacros):
     """Page Template METAL macros for preferences"""
     macro_pages = ('preference_macro_definitions',)
@@ -66,7 +67,9 @@ class PreferencesTree(CookieTreeView):
         filter = PreferenceGroupFilter()
         return self.cookieTree(root, filter)
 
+
 pref_msg = _("${name} Preferences")
+
 
 class EditPreferenceGroup(EditView):
 
@@ -92,7 +95,7 @@ class EditPreferenceGroup(EditView):
         # Determine common whitespace ...
         cols = len(re.match('^[ ]*', text).group())
         # ... and clean it up.
-        text = re.sub('\n[ ]{%i}' %cols, '\n', text).strip()
+        text = re.sub('\n[ ]{%i}' % cols, '\n', text).strip()
 
         if not text:
             return u''

@@ -19,8 +19,10 @@ import zope.app.preference
 from zope.app.wsgi.testlayer import BrowserLayer
 from zope.testbrowser.wsgi import TestBrowserLayer
 
+
 class _PreferencesLayer(TestBrowserLayer,
                         BrowserLayer):
     pass
+
 
 PreferencesLayer = _PreferencesLayer(zope.app.preference)

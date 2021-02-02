@@ -19,4 +19,4 @@ from zope.preference.preference import (
     PreferenceGroupChecker,
     UserPreferences,
     preferencesNamespace,
-    )
+)
