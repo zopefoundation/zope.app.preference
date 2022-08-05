@@ -14,9 +14,7 @@
 """User Preferences System"""
 
 # BBB
-from zope.preference.preference import (
-    PreferenceGroup,
-    PreferenceGroupChecker,
-    UserPreferences,
-    preferencesNamespace,
-)
+from zope.preference.preference import PreferenceGroup
+from zope.preference.preference import PreferenceGroupChecker
+from zope.preference.preference import UserPreferences
+from zope.preference.preference import preferencesNamespace

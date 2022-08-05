@@ -15,9 +15,10 @@
 
 """
 
-import zope.app.preference
 from zope.app.wsgi.testlayer import BrowserLayer
 from zope.testbrowser.wsgi import TestBrowserLayer
+
+import zope.app.preference
 
 
 class _PreferencesLayer(TestBrowserLayer,
