@@ -15,11 +15,11 @@
 
 """
 import doctest
+import importlib
 import unittest
 
 import docutils.core
-import importlib
-import zope.app.preference.testing
+
 import zope.component.testing
 import zope.testing.module
 # Previously from zope.app.renderer
@@ -28,6 +28,8 @@ from zope.interface import Interface
 from zope.interface import directlyProvides
 from zope.interface import implementer
 from zope.publisher.browser import BrowserView
+
+import zope.app.preference.testing
 
 
 class ISource(Interface):
