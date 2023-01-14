@@ -42,7 +42,7 @@ class PreferencesMacros(StandardMacros):
 
 
 @zope.interface.implementer(IObjectFindFilter)
-class PreferenceGroupFilter(object):
+class PreferenceGroupFilter:
     """A special filter for preferences"""
 
     def matches(self, obj):
@@ -84,8 +84,8 @@ class EditPreferenceGroup(EditView):
 
         name = translate(context.__title__, context=request,
                          default=context.__title__)
-        self.label = Message(pref_msg, mapping={u'name': name})
-        super(EditPreferenceGroup, self).__init__(context, request)
+        self.label = Message(pref_msg, mapping={'name': name})
+        super().__init__(context, request)
         self.setPrefix(context.__id__)
 
     def getIntroduction(self):
@@ -98,7 +98,7 @@ class EditPreferenceGroup(EditView):
         text = re.sub('\n[ ]{%i}' % cols, '\n', text).strip()
 
         if not text:
-            return u''
+            return ''
 
         # Render the description as ReST.
         source = zope.component.createObject('zope.source.rest', text)

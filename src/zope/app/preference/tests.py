@@ -53,7 +53,7 @@ class Source(text_type):
 
 
 @implementer(IFactory)
-class SourceFactory(object):
+class SourceFactory:
     """Creates an ISource object."""
 
     def __init__(self, iface, title='', description=''):
@@ -68,8 +68,8 @@ class SourceFactory(object):
 
 
 ReStructuredTextSourceFactory = SourceFactory(
-    IReStructuredTextSource, u"ReStructured Text (ReST)",
-    u"ReStructured Text (ReST) Source")
+    IReStructuredTextSource, "ReStructured Text (ReST)",
+    "ReStructured Text (ReST) Source")
 
 
 class _ReStructuredTextToHTMLRenderer(BrowserView):
@@ -142,7 +142,7 @@ class _ReStructuredTextToHTMLRenderer(BrowserView):
             writer_name='html',
             settings_overrides=overrides,
         )
-        return u''.join(
+        return ''.join(
             (parts['body_pre_docinfo'], parts['docinfo'], parts['body']))
 
 

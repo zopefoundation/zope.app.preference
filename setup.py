@@ -68,6 +68,7 @@ setup(name='zope.app.preference',
       packages=find_packages('src'),
       package_dir={'': 'src'},
       namespace_packages=['zope', 'zope.app'],
+      python_requires='>=3.7',
       extras_require={
           'test': [
               'docutils',
